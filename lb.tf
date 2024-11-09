@@ -15,6 +15,7 @@ resource "azurerm_lb_backend_address_pool" "pool" {
   name            = "BackEndAddressPool"
 }
 
+# Forward les requetes sur les port 443 (HTTPS) et 80 (HTTP)
 resource "azurerm_lb_rule" "https" {
   loadbalancer_id                = azurerm_lb.lb.id
   name                           = "HTTPS"
@@ -37,6 +38,7 @@ resource "azurerm_lb_rule" "http" {
   probe_id                       = azurerm_lb_probe.http.id
 }
 
+# Sonde la santé des VM
 resource "azurerm_lb_probe" "http" {
   loadbalancer_id = azurerm_lb.lb.id
   name            = "http"

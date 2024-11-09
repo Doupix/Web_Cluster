@@ -1,9 +1,9 @@
 
 resource "azurerm_subnet_network_security_group_association" "NSG" {
-	subnet_id = azurerm_subnet.private.id
-	network_security_group_id = azurerm_network_security_group.all.id
+  subnet_id                 = azurerm_subnet.private.id
+  network_security_group_id = azurerm_network_security_group.all.id
 }
-
+# On laisse passer tout le trafic
 resource "azurerm_network_security_group" "all" {
   name                = "All_Connections"
   location            = azurerm_resource_group.web_cluster.location

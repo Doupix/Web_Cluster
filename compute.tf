@@ -1,8 +1,11 @@
+data "azurerm_client_config" "current" {}
+
+# Définit l'image_id de notre VM custom préconfiguré
 locals {
   image_id = "/subscriptions/${var.subscription_id}/resourceGroups/VM_Builder/providers/Microsoft.Compute/galleries/Gallery/images/nginx"
 }
-data "azurerm_client_config" "current" {}
 
+# Récupère le mot de passe admin du vault
 data "azurerm_key_vault" "keyvault" {
   name                = "vlt-ihvfcnyduevvctzssz"
   resource_group_name = "VM_Builder"

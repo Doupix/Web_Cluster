@@ -9,11 +9,12 @@ terraform {
       version = "3.6.3"
     }
   }
+  # On affecte comment backend une Storage Account AZure
   backend "azurerm" {
-    resource_group_name  = "VM_Builder"                    # Can be passed via `-backend-config=`"resource_group_name=<resource group name>"` in the `init` command.
-    storage_account_name = "storagehzvtevxyevcxyez"        # Can be passed via `-backend-config=`"storage_account_name=<storage account name>"` in the `init` command.
-    container_name       = "state"                         # Can be passed via `-backend-config=`"container_name=<container name>"` in the `init` command.
-    key                  = "Web_cluster.terraform.tfstate" # Can be passed via `-backend-config=`"key=<blob key name>"` in the `init` command.
+    resource_group_name  = "VM_Builder"
+    storage_account_name = "storagehzvtevxyevcxyez"
+    container_name       = "state"
+    key                  = "Web_cluster.terraform.tfstate"
   }
 }
 

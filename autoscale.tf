@@ -12,7 +12,7 @@ resource "azurerm_monitor_autoscale_setting" "autoscale" {
       maximum = 4
     }
 
-
+    # Réduit le nombre de VM en cas de sous-utilisation
     rule {
       metric_trigger {
         metric_name        = "Percentage CPU"
@@ -31,6 +31,7 @@ resource "azurerm_monitor_autoscale_setting" "autoscale" {
         cooldown  = "PT1M"
       }
     }
+    # Augmente le nombre de VM en cas de surcharge
     rule {
       metric_trigger {
         metric_name        = "Percentage CPU"
