@@ -2,14 +2,16 @@ locals {
   image_id = "/subscriptions/${var.subscription_id}/resourceGroups/VM_Builder/providers/Microsoft.Compute/galleries/Gallery/images/nginx"
 }
 data "azurerm_client_config" "current" {}
+data "azurerm_key_vault_access_policy" "contributor" {
+  name = "Key & Secret Management"
+}
 
+output "access_policy_key_permissions" {
+  value = data.azurerm_key_vault_access_policy.contributor.key_permissions
+}
 data "azurerm_key_vault" "keyvault" {
   name                = "vlt-ihvfcnyduevvctzssz"
   resource_group_name = "VM_Builder"
-  access_policy {
-    tenant_id = data.azurerm_client_config.current.tenant_id
-    object_id = data.azurerm_client_config.current.object_id
-  }
 }
 
 data "azurerm_key_vault_secret" "rootpasswd" {
