@@ -20,7 +20,7 @@ steps:
       command: "init"
       backendServiceArm: "Terraform"
       backendAzureRmResourceGroupName: "VM_Builder"
-      backendAzureRmStorageAccountName: "storage-hzvtevxyevcxyezjvz"
+      backendAzureRmStorageAccountName: "storagehzvtevxyevcxyez"
       backendAzureRmContainerName: "state"
       backendAzureRmKey: "Web_cluster.terraform.tfstate"
 
