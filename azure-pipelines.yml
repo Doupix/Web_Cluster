@@ -1,0 +1,40 @@
+trigger:
+  - main
+
+pool:
+  name: Pavlova
+
+steps:
+  - task: TerraformInstaller@1
+    displayName: Install Terraform 1.9.8
+    inputs:
+      terraformVersion: 1.9.8
+
+  - task: TerraformTaskV4@4
+    displayName: Initialize Terraform
+    inputs:
+      provider: "azurerm"
+      command: "init"
+      backendServiceArm: "Terraform"
+      backendAzureRmResourceGroupName: "VM_Builder"
+      backendAzureRmStorageAccountName: "storage-hzvtevxyevcxyezjvz"
+      backendAzureRmContainerName: "state"
+      backendAzureRmKey: "Web_cluster.terraform.tfstate"
+
+  - task: TerraformTaskV4@4
+    name: terraformPlan
+    displayName: Create Terraform Plan
+    inputs:
+      provider: "azurerm"
+      command: "plan"
+      commandOptions: "-out main.tfplan"
+      environmentServiceNameAzureRM: "Terraform"
+
+  - task: TerraformTaskV4@4
+    displayName: Apply Terraform Plan
+    condition: eq(variables['terraformPlan.changesPresent'], 'true')
+    inputs:
+      provider: "azurerm"
+      command: "apply"
+      commandOptions: "-auto-approve main.tfplan"
+      environmentServiceNameAzureRM: "Terraform"
