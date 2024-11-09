@@ -18,8 +18,8 @@ resource "azurerm_orchestrated_virtual_machine_scale_set" "vmss_web" {
   resource_group_name         = azurerm_resource_group.web_cluster.name
   location                    = azurerm_resource_group.web_cluster.location
   sku_name                    = "Standard_D2as_v4"
-  instances                   = 1
-  platform_fault_domain_count = 2
+  instances                   = 2
+  platform_fault_domain_count = 1
   zones                       = ["1", "2"]
 
   os_profile {
