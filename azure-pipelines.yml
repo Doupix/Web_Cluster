@@ -30,7 +30,7 @@ steps:
     inputs:
       provider: "azurerm"
       command: "plan"
-      commandOptions: "-out main.tfplan -var='subscription_id=$(subscription_id)'"
+      commandOptions: "-out main.tfplan"
       environmentServiceNameAzureRM: "Terraform"
 
   - task: TerraformTaskV4@4
