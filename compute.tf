@@ -2,11 +2,9 @@ locals {
   image_id = "/subscriptions/${var.subscription_id}/resourceGroups/VM_Builder/providers/Microsoft.Compute/galleries/Gallery/images/nginx"
 }
 data "azurerm_client_config" "current" {}
-
 data "azurerm_key_vault" "keyvault" {
   name                = "vlt-ihvfcnyduevvctzssz"
   resource_group_name = "VM_Builder"
-  tenant_id           = data.azurerm_client_config.current.tenant_id
 }
 
 data "azurerm_key_vault_secret" "rootpasswd" {
